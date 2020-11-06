@@ -1,4 +1,4 @@
-Version =20
+﻿Version =20
 VersionRequired =20
 Checksum =-1959006273
 Begin Form
@@ -1075,7 +1075,7 @@ Begin Form
                             Width =2205
                             Height =240
                             Name ="Label71"
-                            Caption ="BASE Version in SVN Folder:"
+                            Caption ="BASE Version in Repo Folder:"
                             LayoutCachedLeft =270
                             LayoutCachedTop =5582
                             LayoutCachedWidth =2475
@@ -1553,10 +1553,14 @@ Private Sub cboSCCSystem_AfterUpdate()
   SetSCCSystem Me.cboSCCSystem
   Select Case Me.cboSCCSystem
     Case sccSystemSubversion
-      chkCommit.Enabled = True
+      chkCommit.Visible = True
+      chkShowCommit.Visible = True
+      chkNoImportExternalChanges.Visible = True
       chkCommit_AfterUpdate
-      chkImport.Enabled = True
+      chkImport.Visible = True
+      chkShowUpdates.Visible = True
       chkImport_AfterUpdate
+      
       
       Me.Label38.Visible = True
       Me.Box37.Visible = True
@@ -1568,16 +1572,17 @@ Private Sub cboSCCSystem_AfterUpdate()
       
     Case sccSystemText
       chkCommit = True
-      chkCommit.Enabled = False
+      chkCommit.Visible = False
       chkShowCommit = False
-      chkShowCommit.Enabled = False
+      chkShowCommit.Visible = False
       chkNoImportExternalChanges = True
-      chkNoImportExternalChanges.Enabled = False
+      chkNoImportExternalChanges.Visible = False
       Application.RunCommand acCmdSaveRecord
       
       chkImport = False
-      chkImport.Enabled = False
       chkImport_AfterUpdate
+      chkImport.Visible = False
+      chkShowUpdates.Visible = False
       
       Me.Label38.Visible = False
       Me.Box37.Visible = False
